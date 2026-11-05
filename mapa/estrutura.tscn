@@ -1,0 +1,68 @@
+[gd_scene load_steps=10 format=3]
+
+[ext_resource type="Texture2D" path="res://mapa/sprites/estrutura/piso_sala.png" id="Piso"]
+[ext_resource type="Texture2D" path="res://mapa/sprites/estrutura/parede_superior.png" id="ParedeSuperior"]
+[ext_resource type="Texture2D" path="res://mapa/sprites/estrutura/parede_inferior.png" id="ParedeInferior"]
+[ext_resource type="Texture2D" path="res://mapa/sprites/estrutura/parede_janelas.png" id="ParedeJanelas"]
+[ext_resource type="Texture2D" path="res://mapa/sprites/estrutura/parede_direita.png" id="ParedeDireita"]
+
+[sub_resource type="RectangleShape2D" id="FormaCima"]
+size = Vector2(1672, 140)
+
+[sub_resource type="RectangleShape2D" id="FormaBaixo"]
+size = Vector2(1672, 51)
+
+[sub_resource type="RectangleShape2D" id="FormaEsquerda"]
+size = Vector2(88, 750)
+
+[sub_resource type="RectangleShape2D" id="FormaDireita"]
+size = Vector2(48, 750)
+
+[node name="Estrutura" type="Node2D"]
+texture_filter = 1
+z_index = -10
+
+[node name="Piso" type="Sprite2D" parent="."]
+position = Vector2(88, 140)
+texture = ExtResource("Piso")
+centered = false
+
+[node name="ParedeSuperior" type="Sprite2D" parent="."]
+position = Vector2(0, 0)
+texture = ExtResource("ParedeSuperior")
+centered = false
+
+[node name="ParedeInferior" type="Sprite2D" parent="."]
+position = Vector2(0, 890)
+texture = ExtResource("ParedeInferior")
+centered = false
+
+[node name="ParedeJanelas" type="Sprite2D" parent="."]
+position = Vector2(0, 140)
+texture = ExtResource("ParedeJanelas")
+centered = false
+
+[node name="ParedeDireita" type="Sprite2D" parent="."]
+position = Vector2(1624, 140)
+texture = ExtResource("ParedeDireita")
+centered = false
+
+[node name="Limites" type="StaticBody2D" parent="."]
+collision_layer = 1
+collision_mask = 0
+
+[node name="Cima" type="CollisionShape2D" parent="Limites"]
+position = Vector2(836, 70)
+shape = SubResource("FormaCima")
+
+[node name="Baixo" type="CollisionShape2D" parent="Limites"]
+position = Vector2(836, 915.5)
+shape = SubResource("FormaBaixo")
+
+[node name="Esquerda" type="CollisionShape2D" parent="Limites"]
+position = Vector2(44, 515)
+shape = SubResource("FormaEsquerda")
+
+[node name="Direita" type="CollisionShape2D" parent="Limites"]
+position = Vector2(1648, 515)
+shape = SubResource("FormaDireita")

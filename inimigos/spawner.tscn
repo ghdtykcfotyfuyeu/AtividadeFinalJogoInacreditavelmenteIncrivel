@@ -1,0 +1,84 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/spawner.gd" id="1_script"]
+
+[node name="Spawner" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_script")
+
+[node name="Inimigos" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="PontosSpawn" type="Node2D" parent="."]
+
+[node name="Ponto01" type="Marker2D" parent="PontosSpawn"]
+position = Vector2(144, 220)
+
+[node name="Ponto02" type="Marker2D" parent="PontosSpawn"]
+position = Vector2(144, 400)
+
+[node name="Ponto03" type="Marker2D" parent="PontosSpawn"]
+position = Vector2(144, 580)
+
+[node name="Ponto04" type="Marker2D" parent="PontosSpawn"]
+position = Vector2(144, 760)
+
+[node name="Ponto05" type="Marker2D" parent="PontosSpawn"]
+position = Vector2(430, 200)
+
+[node name="Ponto06" type="Marker2D" parent="PontosSpawn"]
+position = Vector2(600, 200)
+
+[node name="Ponto07" type="Marker2D" parent="PontosSpawn"]
+position = Vector2(1050, 200)
+
+[node name="Ponto08" type="Marker2D" parent="PontosSpawn"]
+position = Vector2(1240, 240)
+
+[node name="Ponto09" type="Marker2D" parent="PontosSpawn"]
+position = Vector2(1510, 240)
+
+[node name="Ponto10" type="Marker2D" parent="PontosSpawn"]
+position = Vector2(1510, 420)
+
+[node name="Ponto11" type="Marker2D" parent="PontosSpawn"]
+position = Vector2(1510, 580)
+
+[node name="Ponto12" type="Marker2D" parent="PontosSpawn"]
+position = Vector2(1490, 790)
+
+[node name="Ponto13" type="Marker2D" parent="PontosSpawn"]
+position = Vector2(460, 832)
+
+[node name="Ponto14" type="Marker2D" parent="PontosSpawn"]
+position = Vector2(650, 832)
+
+[node name="Ponto15" type="Marker2D" parent="PontosSpawn"]
+position = Vector2(840, 832)
+
+[node name="Ponto16" type="Marker2D" parent="PontosSpawn"]
+position = Vector2(1040, 832)
+
+[node name="Ponto17" type="Marker2D" parent="PontosSpawn"]
+position = Vector2(1220, 832)
+
+[node name="Ponto18" type="Marker2D" parent="PontosSpawn"]
+position = Vector2(540, 370)
+
+[node name="Ponto19" type="Marker2D" parent="PontosSpawn"]
+position = Vector2(1100, 370)
+
+[node name="Ponto20" type="Marker2D" parent="PontosSpawn"]
+position = Vector2(540, 680)
+
+[node name="Ponto21" type="Marker2D" parent="PontosSpawn"]
+position = Vector2(1100, 680)
+
+[node name="Ponto22" type="Marker2D" parent="PontosSpawn"]
+position = Vector2(836, 300)
+
+[node name="Ponto23" type="Marker2D" parent="PontosSpawn"]
+position = Vector2(836, 740)
+
+[node name="Ponto24" type="Marker2D" parent="PontosSpawn"]
+position = Vector2(430, 580)

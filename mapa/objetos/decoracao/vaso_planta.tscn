@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Texture2D" path="res://mapa/sprites/decoracao/vaso_planta.png" id="1_sprite"]
+
+[sub_resource type="CircleShape2D" id="Forma"]
+radius = 16.0
+
+[node name="VasoPlanta" type="StaticBody2D" groups=["moveis_solidos"]]
+texture_filter = 1
+collision_layer = 1
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -40.0)
+texture = ExtResource("1_sprite")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -16)
+shape = SubResource("Forma")
