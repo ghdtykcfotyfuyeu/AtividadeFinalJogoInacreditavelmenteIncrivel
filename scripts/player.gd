@@ -1,4 +1,5 @@
 extends CharacterBody2D
+# Origem: Movimento, vida e recarga adaptados de jogador.gd, aula-10 de Ezefferth Fernandes; animacoes, colisao do lapis e recuo desenvolvidos com ChatGPT/Codex.
 
 signal vida_alterada(atual: int, maxima: int)
 signal morreu

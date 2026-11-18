@@ -1,3 +1,8 @@
-# Godot 4+ specific ignores
+# Godot: cache local e credenciais de exportacao
 .godot/
-/android/
+.export/
+export_credentials.cfg
+# Exportacoes sao geradas a partir do codigo versionado
+exports/*
+!exports/.gdignore
+*.log

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Sobreviva às provas voadoras por 60 segundos e enfrente o professor. Um jogo de ação em pixel art, feito na Godot.">
+  <title>Provas Voadoras — Sala de aula</title>
+  <style>
+    :root{color-scheme:dark;--fundo:#101e1b;--painel:#192c26;--texto:#f4efdc;--muted:#b7c5b8;--amarelo:#f1d079;--linha:#354a3f}
+    *{box-sizing:border-box}body{margin:0;background:var(--fundo);color:var(--texto);font:17px/1.6 system-ui,sans-serif}a{color:inherit}header,main,footer{width:min(1100px,calc(100% - 40px));margin:auto}header{padding:25px 0;border-bottom:1px solid var(--linha);display:flex;justify-content:space-between;align-items:center;gap:20px}.marca{font-size:14px;font-weight:800;letter-spacing:2px;display:flex;align-items:center;gap:12px}.marca img{image-rendering:pixelated;width:25px;height:25px}header a{font-size:14px;color:var(--muted)}.intro{padding:60px 0 34px;display:grid;grid-template-columns:1fr auto;gap:30px;align-items:end}.etiqueta{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--amarelo);margin:0 0 12px}h1{font-size:clamp(38px,6vw,64px);line-height:1.05;margin:0 0 20px;letter-spacing:-2px}p{margin:0}.descricao{max-width:650px;color:var(--muted);font-size:18px}.jogar{display:inline-flex;justify-content:center;align-items:center;gap:28px;background:var(--amarelo);color:#17231c;padding:16px 24px;border-radius:5px;text-decoration:none;font-weight:800;white-space:nowrap}.jogar:hover{background:#ffe4a0}.jogar:focus-visible,a:focus-visible{outline:3px solid white;outline-offset:5px}.aviso{font-size:12px;color:var(--muted);margin-top:9px;text-align:center}.captura{margin:0;background:#26382e;border:1px solid var(--linha);padding:8px;border-radius:8px}.captura img{display:block;width:100%;height:auto;image-rendering:pixelated;border-radius:3px}.regras{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;padding:32px 0 40px}.regras h2{font-size:17px;margin:0 0 8px}.regras p{font-size:15px;color:var(--muted)}kbd{font:700 12px system-ui;background:#263c31;padding:3px 6px;border:1px solid #50604b;border-radius:4px;white-space:nowrap}footer{border-top:1px solid var(--linha);padding:24px 0 35px;color:var(--muted);font-size:12px;display:flex;justify-content:space-between;gap:20px}footer a{margin-left:14px}@media(max-width:700px){.intro{grid-template-columns:1fr;padding-top:38px}.acao{justify-self:start}.regras{grid-template-columns:1fr;gap:24px}footer{flex-direction:column}header a{font-size:12px}.marca{font-size:11px;letter-spacing:1px}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="marca"><img src="assets/prova.png" alt="">PROVAS VOADORAS</div>
+    <a href="https://github.com/ghdtykcfotyfuyeu/AtividadeFinalJogoInacreditavelmenteIncrivel">Ver projeto no GitHub ↗</a>
+  </header>
+  <main>
+    <section class="intro">
+      <div><p class="etiqueta">Sala de aula · Sobrevivência · Chefe final</p><h1>A última prova<br>é sobreviver.</h1><p class="descricao">Desvie das carteiras, enfrente as provas com seu lápis e aguente 60 segundos. Depois, derrote o professor para passar de ano.</p></div>
+      <div class="acao"><a class="jogar" href="jogar/">Jogar agora <span aria-hidden="true">→</span></a><p class="aviso">Grátis no navegador · Controle por teclado</p></div>
+    </section>
+    <figure class="captura"><img src="assets/sala.png" width="1152" height="656" alt="Arena completa da sala de aula, com aluno, provas voadoras, professor e sombra do ventilador."></figure>
+    <section class="regras" aria-label="Como jogar">
+      <div><h2>01. Mova-se</h2><p>Use <kbd>WASD</kbd> ou as <kbd>setas</kbd>. As paredes e carteiras bloqueiam a passagem.</p></div>
+      <div><h2>02. Ataque</h2><p>Pressione <kbd>Espaço</kbd> para atacar com o lápis. Cada golpe tira uma vida do inimigo.</p></div>
+      <div><h2>03. Passe na prova</h2><p>Sobreviva por 60 segundos e derrote o professor. Se perder as cinco vidas, use <kbd>R</kbd> para tentar de novo.</p></div>
+    </section>
+  </main>
+  <footer><span>Alfredo Sanabria Monges · Jogos Digitais II · 2026</span><span>Feito na Godot · Artes e adaptações com auxílio de IA <a href="https://github.com/ghdtykcfotyfuyeu/AtividadeFinalJogoInacreditavelmenteIncrivel/blob/main/docs/ORIGENS.md">Créditos</a></span></footer>
+</body>
+</html>

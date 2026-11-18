@@ -1,4 +1,5 @@
 extends CharacterBody2D
+# Origem: NavigationAgent2D e dano adaptados de inimigo.gd, aula-10 de Ezefferth Fernandes; maquina de estados e otimizacoes desenvolvidas com ChatGPT/Codex.
 
 signal morreu
 signal vida_alterada(atual: int, maxima: int)
@@ -26,7 +27,7 @@ var cor_original: Color
 
 @onready var agente: NavigationAgent2D = $NavigationAgent2D
 @onready var contato: Area2D = $Contato
-@onready var sprite: Sprite2D = $Sprite2D
+@onready var sprite: CanvasItem = $Visual
 
 
 func _ready() -> void:
@@ -93,7 +94,6 @@ func mudar_estado(novo: Estado) -> void:
 			_parar()
 			agente.avoidance_enabled = false
 			remove_from_group("inimigos")
-			hide()
 	estado_alterado.emit(anterior, estado)
 
 
@@ -136,10 +136,15 @@ func receber_dano(quantidade: int = 1) -> void:
 	vida_alterada.emit(vida, vida_maxima)
 	if vida == 0:
 		mudar_estado(Estado.MORTO)
-		morreu.emit()
-		queue_free()
+		_ao_morrer()
 	else:
 		mudar_estado(Estado.FERIDO)
+
+
+func _ao_morrer() -> void:
+	hide()
+	morreu.emit()
+	queue_free()
 
 
 func desativar() -> void:

@@ -1,0 +1,140 @@
+[gd_scene load_steps=17 format=3 uid="uid://d2dpsdoayc0ls"]
+
+[ext_resource type="Script" path="res://scripts/sala.gd" id="script"]
+[ext_resource type="PackedScene" path="res://scenes/estrutura.tscn" id="estrutura"]
+[ext_resource type="PackedScene" path="res://entities/player.tscn" id="player"]
+[ext_resource type="PackedScene" path="res://entities/spawner.tscn" id="spawner"]
+[ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="hud"]
+[ext_resource type="PackedScene" path="res://scenes/efeitos/sombra_ventilador.tscn" id="sombra_ventilador"]
+[ext_resource type="PackedScene" path="res://entities/moveis/carteira.tscn" id="carteira"]
+[ext_resource type="PackedScene" path="res://entities/moveis/mesa_professor.tscn" id="mesa_professor"]
+[ext_resource type="PackedScene" path="res://entities/moveis/estante.tscn" id="estante"]
+[ext_resource type="PackedScene" path="res://entities/moveis/armario_globo.tscn" id="armario_globo"]
+[ext_resource type="PackedScene" path="res://entities/decoracao/vaso_planta.tscn" id="vaso_planta"]
+[ext_resource type="PackedScene" path="res://entities/decoracao/lousa.tscn" id="lousa"]
+[ext_resource type="PackedScene" path="res://entities/decoracao/porta.tscn" id="porta"]
+[ext_resource type="PackedScene" path="res://entities/decoracao/relogio.tscn" id="relogio"]
+[ext_resource type="PackedScene" path="res://entities/decoracao/mural_avisos.tscn" id="mural_avisos"]
+
+[sub_resource type="NavigationPolygon" id="NavegacaoSala"]
+agent_radius = 18.0
+parsed_geometry_type = 1
+parsed_collision_mask = 1
+source_geometry_mode = 1
+source_geometry_group_name = &"arena"
+outlines = Array[PackedVector2Array]([PackedVector2Array(88, 140, 1624, 140, 1624, 890, 88, 890)])
+
+[node name="Sala" type="Node2D" groups=["arena"]]
+texture_filter = 1
+script = ExtResource("script")
+
+[node name="Estrutura" parent="." instance=ExtResource("estrutura")]
+
+[node name="SombraVentilador" parent="." instance=ExtResource("sombra_ventilador")]
+position = Vector2(884, 556)
+
+[node name="DecoracaoParede" type="Node2D" parent="."]
+z_index = -5
+
+[node name="Lousa" parent="DecoracaoParede" instance=ExtResource("lousa")]
+position = Vector2(836, 64)
+
+[node name="Mural" parent="DecoracaoParede" instance=ExtResource("mural_avisos")]
+position = Vector2(488, 70)
+
+[node name="Relogio" parent="DecoracaoParede" instance=ExtResource("relogio")]
+position = Vector2(1140, 50)
+
+[node name="Porta" parent="DecoracaoParede" instance=ExtResource("porta")]
+position = Vector2(1396, 70)
+
+[node name="MuralLateral" parent="DecoracaoParede" instance=ExtResource("mural_avisos")]
+position = Vector2(1638, 280)
+scale = Vector2(0.2, 1.4)
+
+[node name="QuadroLateral" parent="DecoracaoParede" instance=ExtResource("lousa")]
+position = Vector2(1638, 470)
+scale = Vector2(0.055, 1.8)
+
+[node name="Entidades" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Moveis" type="Node2D" parent="Entidades"]
+y_sort_enabled = true
+
+[node name="CarteiraEsquerda1" parent="Entidades/Moveis" instance=ExtResource("carteira")]
+position = Vector2(310, 310)
+
+[node name="CarteiraDireita1" parent="Entidades/Moveis" instance=ExtResource("carteira")]
+position = Vector2(1368, 310)
+
+[node name="CarteiraEsquerda2" parent="Entidades/Moveis" instance=ExtResource("carteira")]
+position = Vector2(310, 490)
+
+[node name="CarteiraDireita2" parent="Entidades/Moveis" instance=ExtResource("carteira")]
+position = Vector2(1368, 490)
+
+[node name="CarteiraEsquerda3" parent="Entidades/Moveis" instance=ExtResource("carteira")]
+position = Vector2(310, 670)
+
+[node name="CarteiraDireita3" parent="Entidades/Moveis" instance=ExtResource("carteira")]
+position = Vector2(1368, 670)
+
+[node name="CarteiraEsquerda4" parent="Entidades/Moveis" instance=ExtResource("carteira")]
+position = Vector2(310, 850)
+
+[node name="CarteiraDireita4" parent="Entidades/Moveis" instance=ExtResource("carteira")]
+position = Vector2(1368, 850)
+
+[node name="MesaProfessor" parent="Entidades/Moveis" instance=ExtResource("mesa_professor")]
+position = Vector2(836, 220)
+
+[node name="EstanteEsquerda" parent="Entidades/Moveis" instance=ExtResource("estante")]
+position = Vector2(260, 154)
+
+[node name="EstanteDireita" parent="Entidades/Moveis" instance=ExtResource("estante")]
+position = Vector2(1556, 170)
+
+[node name="EstanteLateral" parent="Entidades/Moveis" instance=ExtResource("estante")]
+position = Vector2(1568, 746)
+
+[node name="ArmarioGlobo" parent="Entidades/Moveis" instance=ExtResource("armario_globo")]
+position = Vector2(1228, 162)
+
+[node name="PlantaEsquerda" parent="Entidades/Moveis" instance=ExtResource("vaso_planta")]
+position = Vector2(164, 164)
+
+[node name="PlantaPorta" parent="Entidades/Moveis" instance=ExtResource("vaso_planta")]
+position = Vector2(1468, 165)
+
+[node name="PlantaLateral" parent="Entidades/Moveis" instance=ExtResource("vaso_planta")]
+position = Vector2(1590, 608)
+
+[node name="PlantaInferior" parent="Entidades/Moveis" instance=ExtResource("vaso_planta")]
+position = Vector2(1590, 875)
+
+[node name="Player" parent="Entidades" instance=ExtResource("player")]
+position = Vector2(836, 520)
+
+[node name="Spawner" parent="Entidades" instance=ExtResource("spawner")]
+
+[node name="Navegacao" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavegacaoSala")
+
+[node name="HUD" parent="." instance=ExtResource("hud")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(836, 470.5)
+zoom = Vector2(0.68, 0.68)
+
+[node name="Horda" type="Timer" parent="."]
+process_callback = 0
+wait_time = 1.5
+
+[node name="Relogio" type="Timer" parent="."]
+process_callback = 0
+wait_time = 60.0
+one_shot = true
+
+[connection signal="timeout" from="Horda" to="." method="_on_horda_timeout"]
+[connection signal="timeout" from="Relogio" to="." method="_on_relogio_timeout"]

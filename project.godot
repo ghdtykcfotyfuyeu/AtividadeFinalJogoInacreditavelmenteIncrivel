@@ -10,9 +10,10 @@ config_version=5
 
 [application]
 
+config/version="1.0.0"
 config/name="Provas voadoras - Sala de aula"
-run/main_scene="res://mapa/sala.tscn"
-config/features=PackedStringArray("4.4", "GL Compatibility")
+run/main_scene="res://scenes/sala.tscn"
+config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [display]

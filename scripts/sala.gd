@@ -1,87 +1,84 @@
 extends Node2D
+# Origem: vila.gd da aula-10 de Ezefferth Fernandes e ficha Chefe do roteiro; adaptado com ChatGPT/Codex.
+# Referencias e diferencas: res://docs/ORIGENS.md.
 
-enum EstadoPartida { PREPARANDO, INTERVALO, ONDA, CHEFE, VITORIA, DERROTA }
-
-# Altere estes valores para ajustar a dificuldade sem mudar o restante do jogo.
-const ONDAS = [
-	{"quantidade": 6, "velocidade": 55.0},
-	{"quantidade": 8, "velocidade": 62.0},
-	{"quantidade": 10, "velocidade": 70.0}
-]
-@export var intervalo_ondas: float = 3.0
+enum EstadoPartida { PREPARANDO, HORDA, CHEFE, VITORIA, DERROTA }
 
 var estado: EstadoPartida = EstadoPartida.PREPARANDO
-var onda_atual: int = 0
-var tempo_intervalo: float = 0.0
+var abates: int = 0
 var tempo_partida: float = 0.0
+var chefe: Node2D
 
 @onready var aluno = $Entidades/Player
 @onready var spawner = $Entidades/Spawner
 @onready var hud = $HUD
+@onready var horda: Timer = $Horda
+@onready var relogio: Timer = $Relogio
 
 
 func _ready() -> void:
 	aluno.definir_ativo(false)
 	aluno.vida_alterada.connect(hud.atualizar_vida)
-	aluno.morreu.connect(_derrota)
-	spawner.contagem_alterada.connect(hud.atualizar_contagem)
-	spawner.onda_concluida.connect(_ao_concluir_onda)
-	spawner.chefe_criado.connect(_ao_criar_chefe)
+	aluno.morreu.connect(perder)
+	spawner.inimigo_derrotado.connect(inimigo_morreu)
 	hud.reiniciar_solicitado.connect(_reiniciar)
 	hud.atualizar_vida(aluno.vida, aluno.vida_maxima)
-	hud.atualizar_etapa("Preparando")
-	# Uma unica preparacao; as provas reutilizam o mapa de navegacao.
+	# Prepara uma vez; todos os inimigos usam este mapa de navegacao.
 	$Navegacao.bake_navigation_polygon(false)
 	await get_tree().physics_frame
 	await get_tree().physics_frame
+	estado = EstadoPartida.HORDA
 	aluno.definir_ativo(true)
-	_iniciar_intervalo()
+	spawner.ativo = true
+	relogio.start()
+	horda.start()
+	hud.atualizar_placar(abates, relogio.time_left)
 
 
 func _physics_process(delta: float) -> void:
-	if estado in [EstadoPartida.VITORIA, EstadoPartida.DERROTA, EstadoPartida.PREPARANDO]:
+	if estado not in [EstadoPartida.HORDA, EstadoPartida.CHEFE]:
 		return
 	tempo_partida += delta
-	if estado == EstadoPartida.INTERVALO:
-		tempo_intervalo -= delta
-		var proxima := "Onda %d/3" % (onda_atual + 1) if onda_atual < ONDAS.size() else "Chefe"
-		hud.atualizar_etapa(proxima)
-		if tempo_intervalo <= 0.0:
-			_iniciar_proxima_etapa()
+	hud.atualizar_placar(abates, relogio.time_left, estado == EstadoPartida.CHEFE)
 
 
-func _iniciar_intervalo() -> void:
-	estado = EstadoPartida.INTERVALO
-	tempo_intervalo = intervalo_ondas
+func _on_horda_timeout() -> void:
+	if estado not in [EstadoPartida.HORDA, EstadoPartida.CHEFE]:
+		return
+	spawner.criar_inimigo(false, minf(75.0, 55.0 + tempo_partida / 3.0))
+	# Mesma progressao do exemplo da aula: intervalo x 0,95, minimo 0,5 s.
+	horda.wait_time = maxf(0.5, horda.wait_time * 0.95)
 
 
-func _iniciar_proxima_etapa() -> void:
-	if onda_atual < ONDAS.size():
-		var configuracao: Dictionary = ONDAS[onda_atual]
-		onda_atual += 1
-		estado = EstadoPartida.ONDA
-		hud.atualizar_etapa("Onda %d/3" % onda_atual)
-		spawner.iniciar_onda(configuracao.quantidade, configuracao.velocidade)
-	else:
-		estado = EstadoPartida.CHEFE
-		hud.atualizar_etapa("Chefe")
-		spawner.iniciar_onda(1, 78.0, true)
-
-
-func _ao_concluir_onda() -> void:
-	if estado == EstadoPartida.ONDA:
-		aluno.recuperar_vida(1)
-		_iniciar_intervalo()
-	elif estado == EstadoPartida.CHEFE and not aluno.morto:
-		_finalizar(true)
-
-
-func _ao_criar_chefe(chefe: Node2D) -> void:
+func _on_relogio_timeout() -> void:
+	if estado != EstadoPartida.HORDA:
+		return
+	# Ficha Chefe: o fim dos 60 segundos faz o professor surgir, nao encerra a partida.
+	chefe = spawner.criar_inimigo(true, 78.0)
+	if not is_instance_valid(chefe):
+		# Se todos os pontos estiverem ocupados, tenta outra vez sem atravessar paredes.
+		relogio.start(0.2)
+		return
+	estado = EstadoPartida.CHEFE
 	chefe.vida_alterada.connect(hud.atualizar_chefe)
 	hud.atualizar_chefe(chefe.vida, chefe.vida_maxima)
+	hud.atualizar_placar(abates, 0.0, true)
 
 
-func _derrota() -> void:
+func inimigo_morreu(inimigo: Node2D) -> void:
+	if estado not in [EstadoPartida.HORDA, EstadoPartida.CHEFE]:
+		return
+	abates += 1
+	hud.atualizar_placar(abates, relogio.time_left, estado == EstadoPartida.CHEFE)
+	if inimigo == chefe:
+		vencer()
+
+
+func vencer() -> void:
+	_finalizar(true)
+
+
+func perder() -> void:
 	_finalizar(false)
 
 
@@ -89,11 +86,14 @@ func _finalizar(venceu: bool) -> void:
 	if estado in [EstadoPartida.VITORIA, EstadoPartida.DERROTA]:
 		return
 	estado = EstadoPartida.VITORIA if venceu else EstadoPartida.DERROTA
+	horda.stop()
+	relogio.stop()
 	spawner.encerrar()
 	aluno.definir_ativo(false)
 	for inimigo in get_tree().get_nodes_in_group("inimigos"):
 		inimigo.desativar()
-	hud.mostrar_resultado(venceu, spawner.derrotados, tempo_partida)
+	$SombraVentilador.set_process(false)
+	hud.mostrar_resultado(venceu, abates, tempo_partida)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -102,4 +102,5 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _reiniciar() -> void:
-	get_tree().reload_current_scene()
+	# Como no exemplo fim.gd: a partida nova recarrega a cena e zera o estado.
+	get_tree().reload_current_scene.call_deferred()
