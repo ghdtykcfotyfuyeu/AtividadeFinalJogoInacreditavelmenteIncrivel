@@ -1,5 +1,7 @@
 # Origem do codigo e adaptacoes
 
+Veja tambem a [lista de uso de inteligencia artificial no projeto](USO_DE_IA.md).
+
 Referencia principal: Ezefferth C. A. Fernandes, Jogos Digitais II,
 [construcao-jogo-godot, tag aula-10](https://github.com/ezefferth/construcao-jogo-godot/tree/aula-10).
 Tambem foram usados os PDFs `projeto(1).pdf`, `roteiro-pratica.pdf` (aula 09)

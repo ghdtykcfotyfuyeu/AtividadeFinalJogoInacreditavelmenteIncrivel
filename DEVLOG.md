@@ -55,3 +55,10 @@ nas respectivas datas. Nao foram inventadas dificuldades pessoais nem datas de c
 - O enquadramento mostrado nas capturas, com espaco preto ao redor, foi aceito pelo aluno.
 - Conferido o acesso publico a https://ghdtykcfotyfuyeu.itch.io/provas-voadoras, com resposta HTTP 200 e area de jogo HTML.
 - Adicionado o link ao README e preparada a atualizacao do repositorio para a entrega final.
+
+## Declaracao de uso de IA — 19/11/2026
+
+- Registradas as partes feitas ou adaptadas com IA: menus, chefe, sprites, inimigos, correcoes no jogador e sombra do ventilador.
+- Incluido docs/USO_DE_IA.md, com acesso pelo README e pelo documento de origens.
+- Conferida a versao publicada no GitHub, commit 3fdd6a9, e preparado o pacote completo com a declaracao.
+- Esta atualizacao altera somente a documentacao; o codigo, as cenas e as artes do jogo foram preservados.

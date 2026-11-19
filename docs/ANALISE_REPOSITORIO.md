@@ -1,8 +1,8 @@
-# Analise do repositorio — 18/11/2026
+# Analise do repositorio — atualizada em 19/11/2026
 
 Repositorio: https://github.com/ghdtykcfotyfuyeu/AtividadeFinalJogoInacreditavelmenteIncrivel
 
-## Estado encontrado no GitHub
+## Estado encontrado antes da atualizacao — 18/11/2026
 
 - Branch principal: `main`.
 - Ultimo commit: `3781f21fb7e9813222c2ce745e9570fc6d1fb6e6`, "Atividade dia 4", 04/11/2026 no horario de Brasilia.
@@ -20,13 +20,22 @@ O pacote atual contem codigo organizado, documentacao e exportacoes.
 O jogo foi publicado em https://ghdtykcfotyfuyeu.itch.io/provas-voadoras;
 o link publico foi incluido no README para a entrega final.
 
-A tentativa de enviar a atualizacao foi recusada pela integracao do GitHub:
-`403 Resource not accessible by integration`. A copia local foi concluida, mas
-**nenhum commit, branch ou pull request desta atualizacao foi publicado no GitHub**.
+A tentativa de envio direto pelo ChatGPT foi recusada pela integracao do GitHub:
+`403 Resource not accessible by integration`.
+Posteriormente, o aluno enviou a atualizacao pelo seu computador.
+O commit `3fdd6a95eb360ae27cdc29e142262a65b3bcfc19`, com a mensagem
+"jogo completo", esta publicado na branch `main`. Seu conteudo foi conferido.
 
-## Fazer o commit da entrega final
+## Atualizacao da declaracao de uso de IA — 19/11/2026
 
-O pacote inclui `atualizacao_git.patch`, baseado no commit `3781f21`.
+O pacote completo agora inclui `docs/USO_DE_IA.md` e uma copia em texto da lista.
+O codigo do jogo foi preservado. A declaracao adicionada neste pacote ainda nao
+foi enviada ao GitHub.
+
+## Enviar a atualizacao da documentacao
+
+O pacote inclui `atualizacao_git.patch`, baseado na versao publicada `3fdd6a9`.
+Este patch acrescenta a declaracao e atualiza a documentacao correspondente.
 Extraia o ZIP e abra o terminal na pasta que contem esse patch e a pasta
 `ProvasVoadoras`. Os comandos abaixo criam uma copia nova do repositorio;
 nenhuma pasta de trabalho anterior precisa ser substituida.
@@ -36,15 +45,15 @@ git clone https://github.com/ghdtykcfotyfuyeu/AtividadeFinalJogoInacreditavelmen
 cd Repositorio_GitHub
 git apply --check ../atualizacao_git.patch
 git apply --index ../atualizacao_git.patch
-git commit -m "entrega-final: jogo completo e publicacao web"
+git commit -m "Documenta uso de IA no projeto"
 git push origin main
 ```
 
 Execute uma linha de cada vez. Se houver erro, pare nessa linha.
 O comando `git apply --check` nao mostra mensagem quando a verificacao e aprovada.
 Se indicar conflito, nao force a aplicacao: o repositorio pode ter mudado.
-O patch reorganiza e remove os caminhos antigos,
-alem de adicionar os novos, sem precisar enviar cada arquivo manualmente.
+O patch desta versao modifica apenas a documentacao. Nao reaplique patches
+antigos de organizacao sobre a versao que ja esta publicada.
 No envio, autentique-se na sua conta do GitHub quando solicitado.
 Se a branch `main` exigir revisao, crie uma branch com
 `git switch -c entrega-final-atualizacao`, envie com

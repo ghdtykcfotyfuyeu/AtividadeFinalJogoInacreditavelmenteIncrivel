@@ -62,6 +62,10 @@ o build web exportado fica em `exports/web/` e e gerado pelo workflow do reposit
 
 ## Codigo das aulas e creditos
 
+A lista das partes produzidas ou adaptadas com inteligencia artificial esta em
+[Uso de IA no projeto](docs/USO_DE_IA.md), incluindo menus, chefe, sprites,
+inimigos, correcoes no jogador e sombra do ventilador.
+
 A base de movimento, dano, ataque, navegacao, temporizadores e placar vem dos
 [exemplos da aula 10 do professor Ezefferth C. A. Fernandes](https://github.com/ezefferth/construcao-jogo-godot/tree/aula-10)
 e dos roteiros fornecidos. A condicao do chefe segue a ficha **Chefe** do roteiro,
